@@ -18,8 +18,9 @@
       <h1 class="auth-title">Espace CMS KKS</h1>
       <p class="auth-subtitle">Gestion de contenu sans code pour KKS Groupe Électrique</p>
       
-      <form class="auth-form" id="auth-form">
-        <input type="password" id="auth-pass" class="auth-input" placeholder="Code secret d'accès (ex: kks2026@kin)" required autofocus>
+      <form class="auth-form" id="auth-form" style="display: flex; flex-direction: column; gap: 1rem;">
+        <input type="email" id="auth-email" class="auth-input" placeholder="Adresse e-mail administrateur" required autofocus style="margin-bottom: 0;">
+        <input type="password" id="auth-pass" class="auth-input" placeholder="Mot de passe sécurisé" required style="margin-bottom: 0;">
         <button type="submit" class="auth-btn">Déverrouiller le CMS</button>
       </form>
       

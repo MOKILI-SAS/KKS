@@ -38,6 +38,7 @@ function checkAuth() {
 
 function setupAuthEvents() {
   const authForm = document.getElementById('auth-form');
+  const authEmail = document.getElementById('auth-email');
   const authPass = document.getElementById('auth-pass');
   const authError = document.getElementById('auth-error');
   const logoutBtn = document.getElementById('logout-btn');
@@ -45,17 +46,20 @@ function setupAuthEvents() {
   if (authForm) {
     authForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const val = authPass.value.trim();
-      const savedPin = localStorage.getItem('kks_admin_pin') || 'kks2026@kin';
+      const emailVal = authEmail ? authEmail.value.trim().toLowerCase() : '';
+      const passVal = authPass.value.trim();
+      
+      const savedEmail = localStorage.getItem('kks_admin_email') || 'admin@kksgroupe.com';
+      const savedPass = localStorage.getItem('kks_admin_pin') || 'KksAdmin2026!';
 
-      if (val === savedPin || val === 'kks2026@kin' || val === 'kks2026') {
+      if (emailVal === savedEmail && (passVal === savedPass || passVal === 'KksAdmin2026!')) {
         sessionStorage.setItem('kks_admin_auth', 'true');
         if (authError) authError.style.display = 'none';
         checkAuth();
         showToast('Connexion réussie ! Bienvenue sur le CMS KKS.');
       } else {
         if (authError) {
-          authError.textContent = 'Code secret incorrect. Veuillez réessayer.';
+          authError.textContent = 'Identifiants incorrects. Veuillez réessayer.';
           authError.style.display = 'block';
         }
       }
