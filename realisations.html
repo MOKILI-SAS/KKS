@@ -171,8 +171,8 @@
         <a href="#apropos" class="nav-link">À Propos</a>
         <a href="#domaines" class="nav-link">Domaines</a>
         <a href="#services" class="nav-link">Services</a>
-        <a href="realisations.html" class="nav-link">Réalisations</a>
-        <a href="produits.html" class="nav-link">Produits</a>
+        <a href="#realisations" class="nav-link">Réalisations</a>
+        <a href="#produits" class="nav-link">Produits</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -213,8 +213,7 @@
         <a href="#apropos" class="mobile-nav-link">À Propos</a>
         <a href="#domaines" class="mobile-nav-link">Domaines d'intervention</a>
         <a href="#services" class="mobile-nav-link">Services & Prestations</a>
-        <a href="realisations.html" class="mobile-nav-link">Réalisations</a>
-        <a href="produits.html" class="mobile-nav-link">Produits</a>
+        <a href="#realisations" class="mobile-nav-link">Réalisations</a>
         <a href="#contact" class="mobile-nav-link">Contact</a>
       </nav>
     </div>
@@ -389,6 +388,34 @@
     </div>
   </section>
 
+  <!-- RÉALISATIONS & CHANTIERS -->
+  <section class="section" id="realisations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Preuves & Réalisations Authentiques</span>
+        <h2 class="section-title">Nos Réalisations</h2>
+        <p class="section-desc">Découvrez nos projets documentés sur le terrain : cabines privées, dimensionnements Mimosa, logettes 250A et poses sous dalle.</p>
+      </div>
+      <div class="projects-grid" id="projects-container">
+        <!-- Dynamically populated from cms-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="section section-alt" id="produits">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Vente de Matériel Électrique</span>
+        <h2 class="section-title">Nos Produits</h2>
+        <p class="section-desc">Commandez directement vos équipements et matériels électriques professionnels.</p>
+      </div>
+      <div class="projects-grid" id="products-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- Dynamically populated from cms-data.js -->
+      </div>
+    </div>
+  </section>
+
   <!-- VIDÉO PRÉSENTATION -->
   <section class="section section-alt" id="video">
     <div class="container">
@@ -402,6 +429,36 @@
           <source src="assets/videos/kks-presentation.mp4" type="video/mp4">
           Votre navigateur ne supporte pas la lecture de vidéos HTML5.
         </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI CHOISIR KKS -->
+  <section class="section" id="pourquoi-kks">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nos Engagements</span>
+        <h2 class="section-title">Pourquoi Choisir KKS Groupe Électrique ?</h2>
+        <p class="section-desc">La garantie d'une prestation durable, sécurisée et conforme aux standards industriels.</p>
+      </div>
+      <div class="why-grid" id="strengths-container">
+        <!-- Dynamically populated from cms-data.js -->
+      </div>
+
+      <!-- Portfolio Download CTA Banner -->
+      <div class="portfolio-download-banner">
+        <div class="p-banner-content">
+          <h3>Téléchargez le Portfolio Officiel de KKS</h3>
+          <p>Consultez la version complète au format PDF comprenant tous les détails techniques, agréments de sous-traitance et références de chantiers.</p>
+        </div>
+        <div>
+          <a href="assets/docs/KKS_PORTFOLIO.pdf" target="_blank" class="btn btn-lg btn-accent" download="KKS_PORTFOLIO.pdf">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Télécharger le Portfolio (PDF)</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -531,8 +588,8 @@
             <a href="#apropos" class="footer-link">À Propos</a>
             <a href="#domaines" class="footer-link">Domaines</a>
             <a href="#services" class="footer-link">Services</a>
-            <a href="realisations.html" class="footer-link">Réalisations</a>
-            <a href="produits.html" class="footer-link">Produits</a>
+            <a href="#realisations" class="footer-link">Réalisations</a>
+            <a href="#produits" class="footer-link">Produits</a>
             <a href="#contact" class="footer-link">Contact</a>
           </div>
         </div>
