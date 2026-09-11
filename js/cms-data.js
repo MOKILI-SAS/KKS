@@ -42,10 +42,52 @@ const DEFAULT_KKS_DATA = {
   products: [
     {
       id: "prod-1",
-      name: "Transformateur MT/BT",
-      description: "Transformateur de distribution haute qualité pour vos cabines privées et industrielles.",
+      name: "Matériel Électrique (1)",
+      description: "Équipement électrique professionnel pour vos installations. Veuillez nous contacter pour les détails techniques.",
       price: "Sur devis",
-      image: "assets/images/kks-cabine-snel-ngaliema.jpg"
+      image: "Produit/produit-1.jpeg"
+    },
+    {
+      id: "prod-2",
+      name: "Matériel Électrique (2)",
+      description: "Composant de distribution pour réseaux moyenne et basse tension.",
+      price: "Sur devis",
+      image: "Produit/produit-2.jpeg"
+    },
+    {
+      id: "prod-3",
+      name: "Matériel Électrique (3)",
+      description: "Accessoires et équipements pour cabines privées SNEL.",
+      price: "Sur devis",
+      image: "Produit/produit-3.jpeg"
+    },
+    {
+      id: "prod-4",
+      name: "Matériel Électrique (4)",
+      description: "Tableaux, coffrets ou disjoncteurs pour la sécurisation de vos installations.",
+      price: "Sur devis",
+      image: "Produit/produit-4.jpeg"
+    },
+    {
+      id: "prod-5",
+      name: "Matériel Électrique (5)",
+      description: "Outillage ou équipement de raccordement pour câblages industriels.",
+      price: "Sur devis",
+      image: "Produit/produit-5.jpeg"
+    },
+    {
+      id: "prod-6",
+      name: "Matériel Électrique (6)",
+      description: "Câblage ou système d'éclairage pour vos chantiers.",
+      price: "Sur devis",
+      image: "Produit/produit-6.jpeg"
+    },
+    {
+      id: "prod-7",
+      name: "Matériel Électrique (7)",
+      description: "Pièces de rechange et matériels de maintenance électrique divers.",
+      price: "Sur devis",
+      image: "Produit/produit-7.jpeg"
     }
   ],
 
