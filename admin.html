@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard CMS — KKS Groupe Électrique SARLU</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/jpeg" href="assets/images/logo-kks.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- AUTH MODAL -->
+  <div class="auth-wrapper" id="auth-screen">
+    <div class="auth-card">
+      <img src="assets/images/logo-kks.jpg" alt="Logo KKS" class="auth-logo">
+      <h1 class="auth-title">Espace CMS KKS</h1>
+      <p class="auth-subtitle">Gestion de contenu sans code pour KKS Groupe Électrique</p>
+      
+      <form class="auth-form" id="auth-form">
+        <input type="password" id="auth-pass" class="auth-input" placeholder="Code secret d'accès (ex: kks2026@kin)" required autofocus>
+        <button type="submit" class="auth-btn">Déverrouiller le CMS</button>
+      </form>
+      
+      <div id="auth-error" style="display:none; color: #DC2626; font-size: 0.85rem; margin-top: 0.75rem; font-weight: 600;"></div>
+      
+      <div class="auth-hint">
+        <p>🔒 Accès réservé aux gestionnaires de KKS Groupe Électrique.</p>
+        <p style="margin-top: 0.25rem;">Code secret par défaut : <code>kks2026@kin</code></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dashboard-layout" id="dashboard-layout" style="display: none;">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="assets/images/logo-kks.jpg" alt="Logo KKS" class="sidebar-logo">
+        <div class="sidebar-title">
+          KKS CMS
+          <small>Administration</small>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="tab-btn active" data-tab="general">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Coordonnées & Textes</span>
+        </button>
+
+        <button class="tab-btn" data-tab="media">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span>Médiathèque & Médias</span>
+        </button>
+
+        <button class="tab-btn" data-tab="services">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Services</span>
+        </button>
+
+        <button class="tab-btn" data-tab="projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span>Réalisations & Chantiers</span>
+        </button>
+
+        <button class="tab-btn" data-tab="snel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Pôles & SNEL</span>
+        </button>
+
+        <button class="tab-btn" data-tab="backup">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline>
+          </svg>
+          <span>Sauvegarde & Export</span>
+        </button>
+
+        <button class="tab-btn" data-tab="security">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Code PIN & Sécurité</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="sidebar-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          <span>Voir le site public</span>
+        </a>
+        <button id="logout-btn" class="sidebar-link" style="color: #EF4444; width: 100%; text-align: left;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Se déconnecter</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+      <div class="top-bar">
+        <div class="page-title">
+          <h1>Tableau de bord CMS</h1>
+          <p>Modifiez en direct les textes, coordonnées, prestations, médias et photos de KKS Groupe Électrique.</p>
+        </div>
+        <div class="header-btns">
+          <a href="index.html" target="_blank" class="btn btn-outline-dark">
+            <span>Visiter le site &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- STATS BAR -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-icon">⚡</div>
+          <div>
+            <div class="stat-val" id="stat-services-count">9</div>
+            <div class="stat-label">Services actifs</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🏗️</div>
+          <div>
+            <div class="stat-val" id="stat-projects-count">4</div>
+            <div class="stat-label">Réalisations documentées</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🏢</div>
+          <div>
+            <div class="stat-val" id="stat-domains-count">3</div>
+            <div class="stat-label">Pôles d'intervention</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🤝</div>
+          <div>
+            <div class="stat-val" style="font-size: 1.1rem; color: #10B981;">Qualifié</div>
+            <div class="stat-label">Partenariat SNEL</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1: COORDONNÉES & TEXTES -->
+      <div class="tab-panel active" id="tab-general">
+        <div class="card">
+          <h2 class="card-title">Coordonnées de l'Entreprise</h2>
+          <form id="form-general">
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="company-name">Nom Officiel de l'Entreprise</label>
+                <input type="text" id="company-name" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-tagline">Slogan Principal</label>
+                <input type="text" id="company-tagline" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-subTagline">Sous-titre Officiel</label>
+                <input type="text" id="company-subTagline" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-address">Adresse Physique Complète</label>
+                <input type="text" id="company-address" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-phone">Téléphone Affiché</label>
+                <input type="text" id="company-phone" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-phoneClean">Numéro International Appel & WhatsApp (sans espace, ex: +243983030088)</label>
+                <input type="text" id="company-phoneClean" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-email">Email Professionnel</label>
+                <input type="email" id="company-email" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company-openingHours">Horaires d'Ouverture & Permanence</label>
+                <input type="text" id="company-openingHours" class="form-input">
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin: 2rem 0 1rem; color: #0F172A;">Textes de Présentation du Site</h3>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="hero-title">Titre Hero Principal (Page d'accueil)</label>
+                <input type="text" id="hero-title" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="hero-subtitle">Sous-titre Hero (Description d'accroche)</label>
+                <textarea id="hero-subtitle" class="form-textarea" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="about-p1">Paragraphe 1 — À Propos (Accroche & Présentation)</label>
+                <textarea id="about-p1" class="form-textarea" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="about-p2">Paragraphe 2 — À Propos (Partenariat SNEL & Accompagnement)</label>
+                <textarea id="about-p2" class="form-textarea" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="about-p3">Paragraphe 3 — À Propos (Équipes & Domaines d'expertise)</label>
+                <textarea id="about-p3" class="form-textarea" rows="2"></textarea>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-accent">
+                💾 Enregistrer Coordonnées & Textes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 2: MÉDIATHÈQUE & MÉDIAS -->
+      <div class="tab-panel" id="tab-media">
+        <div class="card">
+          <h2 class="card-title">Médiathèque & Gestion des Médias Clés</h2>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Chargez directement vos photos et vidéos depuis votre ordinateur ou smartphone en cliquant sur « 📁 Charger un fichier ».
+          </p>
+
+          <form id="form-media">
+            <div class="form-grid form-grid-2">
+              <!-- Logo KKS -->
+              <div class="admin-item-card">
+                <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #0F172A;">Logo Officiel KKS</h3>
+                <img src="assets/images/logo-kks.jpg" id="preview-media-logo" class="admin-img-preview" alt="Logo">
+                <div style="margin-top: 0.75rem;">
+                  <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center;">
+                    📁 Charger un nouveau logo
+                    <input type="file" id="file-media-logo" accept="image/*" style="display: none;">
+                  </label>
+                  <input type="text" id="media-logo-url" class="form-input" style="font-size: 0.75rem; margin-top: 0.35rem;" placeholder="Ou chemin/URL de l'image">
+                </div>
+              </div>
+
+              <!-- Photo Hero Card -->
+              <div class="admin-item-card">
+                <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #0F172A;">Photo d'Accueil (Carte Hero)</h3>
+                <img src="assets/images/kks-cabine-snel-ngaliema.jpg" id="preview-media-hero" class="admin-img-preview" alt="Hero">
+                <div style="margin-top: 0.75rem;">
+                  <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center;">
+                    📁 Charger l'image d'accueil
+                    <input type="file" id="file-media-hero" accept="image/*" style="display: none;">
+                  </label>
+                  <input type="text" id="media-hero-url" class="form-input" style="font-size: 0.75rem; margin-top: 0.35rem;" placeholder="Ou chemin/URL de l'image">
+                </div>
+              </div>
+
+              <!-- Photo Section À Propos -->
+              <div class="admin-item-card">
+                <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #0F172A;">Photo Section « À Propos »</h3>
+                <img src="assets/images/kks-services-presentation.jpg" id="preview-media-about" class="admin-img-preview" alt="À Propos">
+                <div style="margin-top: 0.75rem;">
+                  <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center;">
+                    📁 Charger l'image À Propos
+                    <input type="file" id="file-media-about" accept="image/*" style="display: none;">
+                  </label>
+                  <input type="text" id="media-about-url" class="form-input" style="font-size: 0.75rem; margin-top: 0.35rem;" placeholder="Ou chemin/URL de l'image">
+                </div>
+              </div>
+
+              <!-- Vidéo de Présentation -->
+              <div class="admin-item-card">
+                <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #0F172A;">Vidéo Terrain & Poster</h3>
+                <div class="form-group">
+                  <label class="form-label">Fichier Vidéo (MP4)</label>
+                  <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center; margin-bottom: 0.35rem;">
+                    📹 Charger une vidéo MP4
+                    <input type="file" id="file-media-video" accept="video/mp4" style="display: none;">
+                  </label>
+                  <input type="text" id="media-video-url" class="form-input" style="font-size: 0.75rem;" placeholder="Chemin vidéo (ex: assets/videos/kks-presentation.mp4)">
+                </div>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label class="form-label">Image de Couverture Vidéo (Poster)</label>
+                  <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center; margin-bottom: 0.35rem;">
+                    📁 Charger le poster vidéo
+                    <input type="file" id="file-media-poster" accept="image/*" style="display: none;">
+                  </label>
+                  <input type="text" id="media-poster-url" class="form-input" style="font-size: 0.75rem;" placeholder="Chemin du poster">
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-accent">
+                💾 Sauvegarder les Médias Clés
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 3: SERVICES -->
+      <div class="tab-panel" id="tab-services">
+        <div class="card">
+          <div class="card-title">
+            <span>Gestion des Services & Prestations</span>
+            <button class="btn btn-sm btn-accent" onclick="addNewService()">+ Ajouter un service</button>
+          </div>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1.25rem;">
+            Chaque service configuré ici apparaît sur la page d'accueil avec un bouton de contact WhatsApp direct.
+          </p>
+          <div id="admin-services-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: PROJETS / CHANTIERS -->
+      <div class="tab-panel" id="tab-projects">
+        <div class="card">
+          <div class="card-title">
+            <span>Gestion des Réalisations & Chantiers</span>
+            <button class="btn btn-sm btn-accent" onclick="addNewProject()">+ Ajouter une réalisation</button>
+          </div>
+          <p style="color: #64748B; font-size: 0.9rem; margin-bottom: 1.25rem;">
+            Chargez les photos réelles de vos chantiers (Ngaliema, Mimosa, Logette, etc.) et personnalisez leurs descriptifs.
+          </p>
+          <div id="admin-projects-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: PÔLES & SNEL -->
+      <div class="tab-panel" id="tab-snel">
+        <div class="card">
+          <h2 class="card-title">3 Pôles Principaux d'Intervention</h2>
+          <div id="admin-domains-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Spécifications Partenariat SNEL</h2>
+          <div id="admin-snel-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 6: SAUVEGARDE & EXPORT -->
+      <div class="tab-panel" id="tab-backup">
+        <div class="card">
+          <h2 class="card-title">Sauvegarde & Restauration des Données</h2>
+          <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">
+            Conformément aux principes du framework MOKILI, toutes les données du CMS sont stockées de façon autonome. Vous pouvez exporter une sauvegarde intégrale au format JSON en 1 clic, la réimporter ou réinitialiser aux valeurs du portfolio officiel.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 450px;">
+            <button id="btn-export-json" class="btn btn-accent" style="justify-content: flex-start;">
+              📥 Exporter la sauvegarde complète (JSON)
+            </button>
+
+            <div style="border: 1px dashed var(--admin-border); padding: 1.25rem; border-radius: var(--admin-radius);">
+              <label style="display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                📤 Restaurer depuis un fichier JSON :
+              </label>
+              <input type="file" id="input-import-json" accept=".json" style="font-size: 0.85rem;">
+            </div>
+
+            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--admin-border);">
+              <button id="btn-reset-default" class="btn btn-outline-dark" style="color: #DC2626; border-color: #DC2626;">
+                ⚠️ Réinitialiser aux données officielles du portfolio
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 7: SÉCURITÉ PIN -->
+      <div class="tab-panel" id="tab-security">
+        <div class="card">
+          <h2 class="card-title">Modifier le Code Secret d'Accès CMS</h2>
+          <p style="color: #64748B; font-size: 0.95rem; margin-bottom: 1.25rem;">
+            Définissez un nouveau mot de passe / code PIN pour sécuriser l'accès au tableau de bord.
+          </p>
+
+          <form id="form-security" style="max-width: 400px;">
+            <div class="form-group">
+              <label class="form-label" for="new-pin">Nouveau Code PIN</label>
+              <input type="password" id="new-pin" class="form-input" placeholder="Ex: 849201" required minlength="4">
+            </div>
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn btn-accent">Mettre à jour le code PIN</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- JS SCRIPTS -->
+  <script src="js/cms-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

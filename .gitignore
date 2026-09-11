@@ -1,0 +1,13 @@
+﻿# Logs & System
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editors
+.vscode/
+.idea/
+
+# Temp
+.tempmediaStorage/
+node_modules/

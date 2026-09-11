@@ -1,0 +1,21 @@
+﻿{
+  "name": "KKS Groupe Électrique SARLU",
+  "short_name": "KKS Électrique",
+  "description": "Entreprise d'Ingénierie Électrique & Partenaire Qualifié SNEL à Kinshasa",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#0F172A",
+  "icons": [
+    {
+      "src": "assets/images/logo-kks.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/images/logo-kks.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
