@@ -107,6 +107,11 @@ function loadAllData() {
   setVal('company-phoneClean', data.company.phoneClean);
   setVal('company-email', data.company.email);
   setVal('company-openingHours', data.company.openingHours);
+  
+  // Official Docs
+  setVal('company-rccm', data.company.rccm);
+  setVal('company-idnat', data.company.idnat);
+  setVal('company-impot', data.company.impot);
 
   // 2. Texts
   setVal('hero-title', data.company.heroTitle);
@@ -127,6 +132,9 @@ function loadAllData() {
   // 6. Domains & SNEL
   renderAdminDomains(data.domains);
   renderAdminSNEL(data.snelPartnership);
+
+  // 7. Products
+  renderAdminProducts(data.products || []);
 
   updateStats();
 }
@@ -584,6 +592,131 @@ window.saveSNEL = function() {
 };
 
 /* ==========================================================================
+   PRODUCTS MANAGEMENT
+   ========================================================================== */
+function renderAdminProducts(products) {
+  const container = document.getElementById('admin-products-list');
+  if (!container) return;
+
+  if (!products || products.length === 0) {
+    container.innerHTML = '<p style="color: #94A3B8; text-align: center; padding: 2rem;">Aucun produit configuré. Cliquez sur "+ Ajouter un produit".</p>';
+    return;
+  }
+
+  container.innerHTML = products.map((p, idx) => `
+    <div class="admin-item-card" data-product-idx="${idx}">
+      <div class="admin-item-header">
+        <span style="font-weight: 700; font-size: 1.05rem; color: #0F172A;">Produit #${idx + 1} : ${escapeHTML(p.name)}</span>
+        <button class="btn btn-sm btn-outline-dark" style="color: #DC2626; border-color: #FCA5A5;" onclick="deleteProduct(${idx})">Supprimer ce produit</button>
+      </div>
+
+      <div style="display: flex; gap: 1.5rem; margin-top: 1.25rem; flex-wrap: wrap;">
+        <!-- Visual Photo Preview & Direct Upload -->
+        <div style="flex: 0 0 220px;">
+          <label class="form-label">Photo du Produit</label>
+          <img src="${p.image || 'assets/images/logo-kks.jpg'}" id="prod-img-preview-${idx}" class="admin-img-preview" alt="Aperçu">
+          
+          <div style="margin-top: 0.5rem;">
+            <label class="btn btn-sm btn-outline-dark" style="width: 100%; cursor: pointer; text-align: center;">
+              📁 Charger une photo
+              <input type="file" accept="image/*" style="display: none;" onchange="uploadProductImage(event, ${idx})">
+            </label>
+            <input type="text" class="form-input prod-img-url" id="prod-img-url-${idx}" value="${escapeHTML(p.image || '')}" style="font-size: 0.75rem; margin-top: 0.35rem;" placeholder="Ou chemin de l'image">
+          </div>
+        </div>
+
+        <!-- Form fields -->
+        <div style="flex: 1; min-width: 280px;">
+          <div class="form-grid form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Nom du Produit</label>
+              <input type="text" class="form-input prod-name" value="${escapeHTML(p.name || '')}" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Prix (ex: $150, Sur devis)</label>
+              <input type="text" class="form-input prod-price" value="${escapeHTML(p.price || '')}">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <label class="form-label">Description du Produit</label>
+            <textarea class="form-textarea prod-desc" rows="2">${escapeHTML(p.description || '')}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('') + `
+    <div style="margin-top: 1.5rem; text-align: right;">
+      <button type="button" class="btn btn-accent" onclick="saveAllProducts()">
+        💾 Enregistrer tous les produits
+      </button>
+    </div>
+  `;
+}
+
+window.uploadProductImage = function(e, idx) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const dataUrl = event.target.result;
+    const preview = document.getElementById(`prod-img-preview-${idx}`);
+    const inputUrl = document.getElementById(`prod-img-url-${idx}`);
+    if (preview) preview.src = dataUrl;
+    if (inputUrl) inputUrl.value = dataUrl;
+    showToast('Photo du produit chargée.');
+  };
+  reader.readAsDataURL(file);
+};
+
+window.addNewProduct = function() {
+  const data = window.KKS_CMS.getData();
+  if (!data.products) data.products = [];
+  data.products.push({
+    id: "prod-" + Date.now(),
+    name: "Nouveau Produit Électrique",
+    price: "Sur devis",
+    image: "assets/images/logo-kks.jpg",
+    description: "Description détaillée du produit et de ses caractéristiques techniques."
+  });
+  window.KKS_CMS.saveData(data);
+  renderAdminProducts(data.products);
+  updateStats();
+  showToast('Nouveau produit ajouté.');
+};
+
+window.deleteProduct = function(idx) {
+  if (!confirm('Voulez-vous vraiment supprimer ce produit ?')) return;
+  const data = window.KKS_CMS.getData();
+  data.products.splice(idx, 1);
+  window.KKS_CMS.saveData(data);
+  renderAdminProducts(data.products);
+  updateStats();
+  showToast('Produit supprimé.');
+};
+
+window.saveAllProducts = function() {
+  const data = window.KKS_CMS.getData();
+  const cards = document.querySelectorAll('#admin-products-list .admin-item-card');
+
+  data.products = Array.from(cards).map((card, idx) => {
+    const orig = data.products[idx] || {};
+    return {
+      id: orig.id || ('prod-' + (idx + 1)),
+      name: card.querySelector('.prod-name').value.trim(),
+      price: card.querySelector('.prod-price').value.trim(),
+      image: card.querySelector('.prod-img-url').value.trim() || orig.image,
+      description: card.querySelector('.prod-desc').value.trim()
+    };
+  });
+
+  window.KKS_CMS.saveData(data);
+  showToast('Tous les produits ont été enregistrés !');
+  renderAdminProducts(data.products);
+  updateStats();
+};
+
+/* ==========================================================================
    FORM SUBMISSIONS & BACKUP
    ========================================================================== */
 function setupFormSubmissions() {
@@ -608,6 +741,10 @@ function setupFormSubmissions() {
       data.company.aboutText1 = document.getElementById('about-p1').value.trim();
       data.company.aboutText2 = document.getElementById('about-p2').value.trim();
       data.company.aboutText3 = document.getElementById('about-p3').value.trim();
+
+      data.company.rccm = document.getElementById('company-rccm') ? document.getElementById('company-rccm').value.trim() : '';
+      data.company.idnat = document.getElementById('company-idnat') ? document.getElementById('company-idnat').value.trim() : '';
+      data.company.impot = document.getElementById('company-impot') ? document.getElementById('company-impot').value.trim() : '';
 
       window.KKS_CMS.saveData(data);
       showToast('Coordonnées et textes généraux enregistrés avec succès !');

@@ -25,7 +25,10 @@ const DEFAULT_KKS_DATA = {
     heroSubtitle: "Entreprise d'ingénierie et de services reconnue, spécialisée dans l'électricité générale. Partenaire qualifié de la SNEL pour l'étude, l'installation et la maintenance d'infrastructures électriques MT/BT fiables et conformes aux normes.",
     aboutText1: "KKS Groupe Électrique SARLU est une entreprise d'ingénierie et de services reconnue, spécialisée dans le secteur de l'électricité générale à Kinshasa et en République Démocratique du Congo.",
     aboutText2: "Nous accompagnons nos clients institutionnels et privés, y compris la Société Nationale d'Électricité (SNEL), dans l'étude, l'installation et la maintenance d'infrastructures électriques en garantissant une fiabilité sans faille et une stricte conformité aux normes en vigueur.",
-    aboutText3: "Nos équipes pluridisciplinaires d'ingénieurs et techniciens hautement qualifiés interviennent sur l'ensemble de la chaîne de valeur : moyenne tension, basse tension, cabines de transformation, câblage sous dalle et réseaux de distribution."
+    aboutText3: "Nos équipes pluridisciplinaires d'ingénieurs et techniciens hautement qualifiés interviennent sur l'ensemble de la chaîne de valeur : moyenne tension, basse tension, cabines de transformation, câblage sous dalle et réseaux de distribution.",
+    rccm: "CD/KNG/RCCM/19-B-006053",
+    idnat: "01-832-N45708Q",
+    impot: "B225461R"
   },
 
   media: {
@@ -35,6 +38,16 @@ const DEFAULT_KKS_DATA = {
     video: "assets/videos/kks-presentation.mp4",
     videoPoster: "assets/images/kks-equipe-technique-banner.jpg"
   },
+
+  products: [
+    {
+      id: "prod-1",
+      name: "Transformateur MT/BT",
+      description: "Transformateur de distribution haute qualité pour vos cabines privées et industrielles.",
+      price: "Sur devis",
+      image: "assets/images/kks-cabine-snel-ngaliema.jpg"
+    }
+  ],
 
   domains: [
     {

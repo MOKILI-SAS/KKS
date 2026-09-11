@@ -172,6 +172,7 @@
         <a href="#domaines" class="nav-link">Domaines</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#realisations" class="nav-link">Réalisations</a>
+        <a href="#produits" class="nav-link">Produits</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
 
@@ -401,6 +402,20 @@
     </div>
   </section>
 
+  <!-- PRODUITS -->
+  <section class="section section-alt" id="produits">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Vente de Matériel Électrique</span>
+        <h2 class="section-title">Nos Produits</h2>
+        <p class="section-desc">Commandez directement vos équipements et matériels électriques professionnels.</p>
+      </div>
+      <div class="projects-grid" id="products-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- Dynamically populated from cms-data.js -->
+      </div>
+    </div>
+  </section>
+
   <!-- VIDÉO PRÉSENTATION -->
   <section class="section section-alt" id="video">
     <div class="container">
@@ -545,9 +560,25 @@
           <p>
             Entreprise d'ingénierie et d'installations électriques moyenne et basse tension. Partenaire qualifié et sous-traitant SNEL pour la réalisation de cabines privées et chantiers électriques industriels.
           </p>
-          <div style="display: flex; gap: 0.75rem;">
+          <div style="font-size: 0.85rem; color: #94A3B8; margin-bottom: 1.25rem;">
+            <strong>RCCM:</strong> <span data-cms="company.rccm">CD/KNG/RCCM/19-B-006053</span><br>
+            <strong>IDNAT:</strong> <span data-cms="company.idnat">01-832-N45708Q</span><br>
+            <strong>N° Impôt:</strong> <span data-cms="company.impot">B225461R</span>
+          </div>
+          <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem;">
             <a href="tel:+243983030088" class="btn btn-sm btn-outline-light js-tel-link">📞 +243 983 030 088</a>
             <a href="https://wa.me/243983030088" target="_blank" rel="noopener" class="btn btn-sm btn-whatsapp js-wa-link">💬 WhatsApp</a>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="https://www.facebook.com/profile.php?id=61578478682733" target="_blank" rel="noopener" style="color: #cbd5e1; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#cbd5e1'">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/kksgroupeelectric?stkn=bDRrM28wdHB0c3Bk" target="_blank" rel="noopener" style="color: #cbd5e1; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#cbd5e1'">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://vm.tiktok.com/ZS9Sm2oH6LrhY-sCoB0/" target="_blank" rel="noopener" style="color: #cbd5e1; transition: color 0.2s;" onmouseover="this.style.color='#FFF'" onmouseout="this.style.color='#cbd5e1'">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a3 3 0 0 1-3-3"></path></svg>
+            </a>
           </div>
         </div>
         <div>
@@ -558,6 +589,7 @@
             <a href="#domaines" class="footer-link">Domaines</a>
             <a href="#services" class="footer-link">Services</a>
             <a href="#realisations" class="footer-link">Réalisations</a>
+            <a href="#produits" class="footer-link">Produits</a>
             <a href="#contact" class="footer-link">Contact</a>
           </div>
         </div>

@@ -95,11 +95,19 @@ function renderDynamicContent(data) {
   // Render Projects / Chantiers
   renderProjects(data.projects);
 
+  // Render Products
+  renderProducts(data.products || [], data.company);
+
   // Render Strengths / Pourquoi KKS
   renderStrengths(data.strengths);
 
   // Render SNEL Partnership Items
   renderSNEL(data.snelPartnership);
+
+  // Set Official Docs
+  document.querySelectorAll('[data-cms="company.rccm"]').forEach(el => el.textContent = data.company.rccm || '');
+  document.querySelectorAll('[data-cms="company.idnat"]').forEach(el => el.textContent = data.company.idnat || '');
+  document.querySelectorAll('[data-cms="company.impot"]').forEach(el => el.textContent = data.company.impot || '');
 }
 
 function renderDomains(domains) {
@@ -176,6 +184,42 @@ function renderProjects(projects) {
       </div>
     </div>
   `).join('');
+}
+
+function renderProducts(products, company) {
+  const container = document.getElementById('products-container');
+  if (!container || !products) return;
+
+  const waMsgBase = "Bonjour KKS Groupe Électrique, je souhaite acheter ou avoir des informations sur le produit : ";
+  const phoneClean = company && company.phoneClean ? company.phoneClean.replace('+', '') : '243983030088';
+
+  container.innerHTML = products.map(p => {
+    const waUrl = `https://wa.me/${phoneClean}?text=${encodeURIComponent(waMsgBase + p.name)}`;
+    return `
+      <div class="project-card product-card">
+        <div class="project-img-box">
+          <img src="${p.image}" alt="Produit ${escapeHTML(p.name)}" class="project-img" loading="lazy" style="object-fit: cover;">
+          <div class="project-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+            <span class="project-client" style="background-color: var(--primary); color: white; padding: 0.35rem 0.75rem; border-radius: 4px; font-weight: bold;">
+              ${escapeHTML(p.price)}
+            </span>
+          </div>
+        </div>
+        <div class="project-content" style="display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1;">
+          <div>
+            <h3 class="project-title" style="margin-top: 0.5rem;">${escapeHTML(p.name)}</h3>
+            <p class="project-desc">${escapeHTML(p.description)}</p>
+          </div>
+          <div class="service-footer" style="margin-top: 1.5rem;">
+            <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; text-align: center; display: block; padding: 0.75rem;">
+              Acheter sur WhatsApp
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 0.5rem;"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderStrengths(strengths) {
